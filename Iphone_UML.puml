@@ -1,0 +1,93 @@
+
+@startuml
+
+' Interfaces
+interface Camera {
+  +tirarFoto(): void
+  +exibirFoto(): void
+  +guardarNaGaleria(): void
+  +exibirGaleria(): void
+  +darZoom(): void
+}
+
+interface Ipod {
+  +tocar(): void
+  +pausar(): void
+  +selecionarMusica(): void
+  +pular(): void
+  +trocarModo(modo: Modo): void
+}
+
+interface Telefone {
+  +telefonar(numeroDeTelefone: int): void
+  +atender(): void
+  +enviarMensagem(): void
+  +receberMensagem(): String
+  +conectarNaInternet(): void
+  +salvarNosContatos(contato: Contato): void
+  +consultarContatos(): void
+  +acessarCalendario(): void
+  +mesclarChamada(contato1: Contato, contato2: Contato): void
+  +favoritarContato(contato: Contato): void
+  +escutarVoiceMail(voicemail: Voicemail): void
+  +receberEmail(email: Email): void
+}
+
+' Classe principal
+class Iphone {
+  -modelo: String
+  -cor: String
+  -armazenamento: int
+  -capacidadeBateria: int
+  -nivelBateria: int
+  -galeria: List<Foto>
+  -playlist: List<Musica>
+  -contatos: List<Contato>
+  -mensagens: List<Mensagem>
+  -emails: List<Email>
+  -conectadoInternet: boolean
+  -calendario: Calendar
+  -voicemails: List<Voicemail>
+}
+
+' Records
+class Contato {
+  +nome: String
+  +numero: int
+}
+
+class Email {
+  +endereco: String
+  +remetente: String
+  +destinatario: String
+  +corpoDoEmail: String
+}
+
+class Foto
+class Mensagem {
+  +destinatario: String
+  +remetente: String
+  +mensagem: String
+}
+
+class Modo {
+  +nome: String
+  +acao: String
+}
+
+class Musica {
+  +nome: String
+  +duracao: String
+  +avaliacao: double
+}
+
+class Voicemail {
+  +duracao: int
+}
+
+' Relacionamentos
+Iphone ..|> Camera
+Iphone ..|> Ipod
+Iphone ..|> Telefone
+
+@enduml
